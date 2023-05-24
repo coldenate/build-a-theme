@@ -1,0 +1,22 @@
+{
+	"manifestVersion": 1,
+	"id": "omnitheme",
+	"name": "Build a Theme",
+	"author": "coldenate",
+	"repoUrl": "https://github.com/coldenate/build-a-theme",
+	"enableOnMobile": true,
+	"version": {
+		"major": 0,
+		"minor": 1,
+		"patch": 0
+	},
+	"theme": ["light", "dark"],
+	"description": "🏗️ Build your own theme for RemNote. No Coding Required!",
+	"requestNative": false,
+	"requiredScopes": [
+		{
+			"type": "All",
+			"level": "Read"
+		}
+	]
+}
