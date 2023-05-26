@@ -8,10 +8,10 @@
 	"version": {
 		"major": 0,
 		"minor": 1,
-		"patch": 0
+		"patch": 1
 	},
 	"theme": ["light", "dark"],
-	"description": "🏗️ Build your own theme for RemNote. No Coding Required!",
+	"description": "[PreRelease] 🏗️ Build your own theme for RemNote. No Coding Required!",
 	"requestNative": false,
 	"requiredScopes": [
 		{

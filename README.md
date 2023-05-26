@@ -23,9 +23,13 @@
 4. Navigate to `Plugin Settings` and scroll to `Build A Theme`.
 5. _Customize to your liking!_
 
-### Usage Guide
+### Pre-release Usage Guide
 
-<kbd>Work In Progress</kbd>
+Please note that these instructions are for the prerelease version of the plugin and are subject to change.
+
+1. Navigate to `Plugin Settings` and scroll to `Build A Theme`.
+2. Find the subject-color you would like to replace, and enter a hex color code in the input field.
+3. The plugin updates as you go, so you can see your changes in real time.
 
 ---
 
