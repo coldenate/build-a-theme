@@ -5,34 +5,39 @@ import {
 } from "@remnote/plugin-sdk";
 import { formTheme, customTheme, appearanceScheme } from "../funcs/buildLess";
 
-const colorList = [
-	"rosewater",
-	"flamingo",
-	"pink",
-	"mauve",
-	"red",
-	"maroon",
-	"peach",
-	"yellow",
-	"green",
-	"teal",
-	"sky",
-	"sapphire",
-	"blue",
-	"lavender",
-	"text",
-	"subtext1",
-	"subtext0",
-	"overlay2",
-	"overlay1",
-	"overlay0",
-	"surface2",
-	"surface1",
-	"surface0",
-	"base",
-	"mantle",
-	"crust",
-];
+const defaultColorList: customTheme = {
+	accent: "#89b4fa",
+	name: "Example: Catppuccin Mocha",
+	type: "dark",
+	colors: {
+		rosewater: "#f5e0dc",
+		flamingo: "#f2cdcd",
+		pink: "#f5c2e7",
+		mauve: "#cba6f7",
+		red: "#f38ba8",
+		maroon: "#eba0ac",
+		peach: "#fab387",
+		yellow: "#f9e2af",
+		green: "#a6e3a1",
+		teal: "#94e2d5",
+		sky: "#89dceb",
+		sapphire: "#74c7ec",
+		blue: "#89b4fa",
+		lavender: "#b4befe",
+		text: "#cdd6f4",
+		subtext1: "#bac2de",
+		subtext0: "#a6adc8",
+		overlay2: "#9399b2",
+		overlay1: "#7f849c",
+		overlay0: "#6c7086",
+		surface2: "#585b70",
+		surface1: "#45475a",
+		surface0: "#313244",
+		base: "#1e1e2e",
+		mantle: "#181825",
+		crust: "#11111b",
+	},
+};
 
 async function onActivate(plugin: ReactRNPlugin) {
 	// Register a setting to change the catppuccin theme
@@ -74,11 +79,16 @@ async function onActivate(plugin: ReactRNPlugin) {
 	});
 
 	// for color colors, register a setting to assign a color to it
-	for (let i = 0; i < colorList.length; i++) {
+	for (const colorName in defaultColorList.colors) {
 		await plugin.settings.registerStringSetting({
-			id: colorList[i],
-			title: `Substitute Color for ${colorList[i]}`,
-			description: `Choose a hexcode color to substitute for ${colorList[i]}. Feel free to include the # at the beginning or not!`,
+			id: colorName,
+			title: `Substitute Color for ${
+				colorName.charAt(0).toUpperCase() + colorName.slice(1)
+			}`,
+			description: `Choose a hexcode color to substitute for ${
+				colorName.charAt(0).toUpperCase() + colorName.slice(1)
+			}. Feel free to include the # at the beginning or not!`,
+			defaultValue: defaultColorList.colors[colorName],
 		});
 	}
 
@@ -89,7 +99,7 @@ async function onActivate(plugin: ReactRNPlugin) {
 		title: "Accent Color",
 		description:
 			"Choose a color to use as an accent color. Feel free to include the # at the beginning or not!",
-		defaultValue: "#89B4FA",
+		defaultValue: "#89b4fa",
 	});
 
 	// Each time the setting changes, re-register the text color css.
@@ -146,28 +156,37 @@ async function onActivate(plugin: ReactRNPlugin) {
 			crust: "",
 		};
 
-		for (let i = 0; i < colorList.length; i++) {
-			const color = await reactivePlugin.settings.getSetting(
-				colorList[i]
-			);
+		for (const colorName in defaultColorList.colors) {
+			const color = await reactivePlugin.settings.getSetting(colorName);
+			if (color === "") {
+				colorsDict[colorName] = defaultColorList.colors[colorName];
+				continue;
+			}
 			if (color === null || color === undefined) {
-				console.error(`${colorList[i]} is null or undefined!`);
+				console.error(`${colorName} is null or undefined!`);
 				return;
 			}
-			colorsDict[colorList[i]] = color as string;
+			colorsDict[colorName] = color as string;
 		}
+
+		const accentColorCustom: string =
+			await reactivePlugin.settings.getSetting("accent-color");
 
 		let userTheme: customTheme = {
 			type: userThemeType,
 			name: userThemeName,
-			accent: await reactivePlugin.settings.getSetting("accent-color"),
+			accent: accentColorCustom,
 			colors: colorsDict,
 		}; // interface is built now we generate
 
+		if (accentColorCustom === "") {
+			userTheme.accent = defaultColorList.colors.blue;
+		}
 		const masterTheme: string = await fetch(
 			`${plugin.rootURL}theme.less`
 		).then((response) => response.text());
 		let themeFile: string | any;
+		console.log(userTheme);
 		await formTheme(userTheme, masterTheme)
 			.then((compiledCSS) => {
 				themeFile = compiledCSS;
