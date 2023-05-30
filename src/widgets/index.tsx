@@ -186,7 +186,6 @@ async function onActivate(plugin: ReactRNPlugin) {
 			`${plugin.rootURL}theme.less`
 		).then((response) => response.text());
 		let themeFile: string | any;
-		console.log(userTheme);
 		await formTheme(userTheme, masterTheme)
 			.then((compiledCSS) => {
 				themeFile = compiledCSS;
