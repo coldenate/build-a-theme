@@ -42,7 +42,7 @@ Please note that these instructions are for the prerelease version of the plugin
 ---
 
 <p align="center">
-	<strong>Copyright &copy; 2023 <a href="https://github.com/catppuccin" target="_blank">Nathan Solis</a></strong>
+	<strong>Copyright &copy; 2023 <a href="https://github.com/coldenate" target="_blank">Nathan Solis</a></strong>
 	<br />
 	<br />
 	Repository based off of my work in <a href="https://github.com/catppuccin/remnote" target="_blank">catppuccin/remnote</a>.
