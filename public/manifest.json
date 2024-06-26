@@ -7,8 +7,8 @@
 	"enableOnMobile": true,
 	"version": {
 		"major": 0,
-		"minor": 2,
-		"patch": 1
+		"minor": 3,
+		"patch": 0
 	},
 	"theme": ["light", "dark"],
 	"description": "[PreRelease] 🏗️ Build your own theme for RemNote. No Coding Required!",
