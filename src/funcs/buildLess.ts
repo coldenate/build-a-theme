@@ -50,7 +50,7 @@ function formTheme(theme: customTheme, masterTheme: string) {
 	const accentColor = tinycolor(theme.accent);
 	themeData = themeData.replace(
 		/@accent: @blue;/g,
-		`@accent: ${accentColor.toHexString()};`
+		`@accent: ${accentColor.toHexString()};`,
 	);
 
 	// prepend the color palette to the less file
@@ -71,10 +71,13 @@ function formTheme(theme: customTheme, masterTheme: string) {
 	}
 
 	// do the same for the accent color
+	const accentColorShit = tinycolor(theme.accent);
 	palette += `@accent-raw: ${accentColor.toRgbString()};\n`;
 	palette += `@accent-hsl: ${accentColor.toHslString()};\n`;
 	palette += `@accent-rgb: ${accentColor.toRgbString()};\n`;
 	palette += `@accent: ${accentColor.toHexString()};\n`;
+
+	console.log(palette);
 
 	themeData = palette + themeData;
 	// compile the less file
@@ -85,7 +88,15 @@ function formTheme(theme: customTheme, masterTheme: string) {
 				console.log(err);
 				reject(err);
 			} else {
-				resolve(output.css);
+				let css = output.css;
+				const replaceDict: { [key: string]: string } = {
+					CHECKBOX_ACCENT__: `${accentColorShit.toHex().replace("#", "%23")}`,
+				};
+				for (const key in replaceDict) {
+					css = css.replace(key, replaceDict[key]);
+				}
+				// console.log(css);
+				resolve(css);
 			}
 		});
 	});

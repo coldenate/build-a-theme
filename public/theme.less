@@ -2,23 +2,12 @@
 @appearance-no-dot: "appearance-no-dot";
 @accent: @blue;
 .transition-colors {
-	transition-property:
-		color,
-		background-color,
-		border-color,
-		fill,
-		stroke,
+	transition-property: color, background-color, border-color, fill, stroke,
 		-webkit-text-decoration-color;
 	transition-property: color, background-color, border-color,
 		text-decoration-color, fill, stroke;
-	transition-property:
-		color,
-		background-color,
-		border-color,
-		text-decoration-color,
-		fill,
-		stroke,
-		-webkit-text-decoration-color;
+	transition-property: color, background-color, border-color,
+		text-decoration-color, fill, stroke, -webkit-text-decoration-color;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
 }
@@ -178,24 +167,12 @@
 		background-color: @surface0;
 		color: @accent;
 		border-color: @accent;
-		transition-property:
-			color,
-			background-color,
-			border-color,
-			fill,
-			stroke,
-			-webkit-text-decoration-color,
-			filter;
+		transition-property: color, background-color, border-color, fill, stroke,
+			-webkit-text-decoration-color, filter;
 		transition-property: color, background-color, border-color,
 			text-decoration-color, fill, stroke, filter;
-		transition-property:
-			color,
-			background-color,
-			border-color,
-			text-decoration-color,
-			fill,
-			stroke,
-			-webkit-text-decoration-color,
+		transition-property: color, background-color, border-color,
+			text-decoration-color, fill, stroke, -webkit-text-decoration-color,
 			filter;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 1000ms;
@@ -207,24 +184,12 @@
 		color: @accent;
 		background-color: @surface0;
 		border-color: @overlay0;
-		transition-property:
-			color,
-			background-color,
-			border-color,
-			fill,
-			stroke,
-			-webkit-text-decoration-color,
-			filter;
+		transition-property: color, background-color, border-color, fill, stroke,
+			-webkit-text-decoration-color, filter;
 		transition-property: color, background-color, border-color,
 			text-decoration-color, fill, stroke, filter;
-		transition-property:
-			color,
-			background-color,
-			border-color,
-			text-decoration-color,
-			fill,
-			stroke,
-			-webkit-text-decoration-color,
+		transition-property: color, background-color, border-color,
+			text-decoration-color, fill, stroke, -webkit-text-decoration-color,
 			filter;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 1000ms;
@@ -255,32 +220,32 @@
 
 	.highlight-color {
 		&--red {
-			background-color: rgba(@red-raw, var(--tw-bg-opacity-highlight));
+			background-color: fade(@red, 70%);
 			color: @text;
 		}
 
 		&--orange {
-			background-color: rgba(@peach-raw, var(--tw-bg-opacity-highlight));
+			background-color: fade(@peach, 70%);
 			color: @text;
 		}
 
 		&--yellow {
-			background-color: rgba(@yellow-raw, var(--tw-bg-opacity-highlight));
+			background-color: fade(@yellow, 70%);
 			color: @text;
 		}
 
 		&--blue {
-			background-color: rgba(@blue-raw, var(--tw-bg-opacity-highlight));
+			background-color: fade(@blue, 70%);
 			color: @text;
 		}
 
 		&--purple {
-			background-color: rgba(@mauve-raw, var(--tw-bg-opacity-highlight));
+			background-color: fade(@mauve, 70%);
 			color: @text;
 		}
 
 		&--green {
-			background-color: rgba(@green-raw, var(--tw-bg-opacity-highlight));
+			background-color: fade(@green, 70%);
 			color: @text;
 		}
 	}
